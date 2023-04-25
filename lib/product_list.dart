@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
@@ -35,9 +37,19 @@ class _ProductListScreenState extends State<ProductListScreen> {
   Widget build(BuildContext context) {
     final cart = Provider.of<CartProvider>(context);
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.teal,
-        title: Text('Product List'),
+        flexibleSpace: ClipRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10 , sigmaY: 10),
+            child: Container(color: Colors.transparent,),
+          )),
+        elevation: 0,
+        backgroundColor: Colors.white.withAlpha(200),
+        title: Text('Product List',
+          style: TextStyle(
+            color: Colors.black,
+          )),
         centerTitle: true,
         actions: [
           InkWell(
@@ -51,7 +63,8 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     return Text(value.getCounter().toString(),style: TextStyle(color: Colors.white),);
                   },
                 ),
-                child: Icon(Icons.shopping_cart_outlined),
+                child: Icon(Icons.shopping_cart_outlined,
+                color: Colors.black,),
               ),
             ),
           ),

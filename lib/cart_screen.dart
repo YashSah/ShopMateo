@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,9 +23,22 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     final cart = Provider.of<CartProvider>(context);
     return Scaffold(
+      extendBodyBehindAppBar: true,
         appBar: AppBar(
-          backgroundColor: Colors.teal,
-          title: Text('My Products'),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_new),
+            onPressed: () => Navigator.of(context).pop(),
+            color: Colors.red,
+          ),
+          flexibleSpace: ClipRect(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 10 , sigmaY: 10),
+              child: Container(color: Colors.transparent,),
+            )),
+          elevation: 0,
+          backgroundColor: Colors.white.withAlpha(100),
+          title: Text('My Products',
+          style: TextStyle(color: Colors.black),),
           centerTitle: true,
           actions: [
             Center(
@@ -33,7 +48,8 @@ class _CartScreenState extends State<CartScreen> {
                     return Text(value.getCounter().toString(),style: TextStyle(color: Colors.white),);
                   },
                 ),
-                child: Icon(Icons.shopping_cart_outlined),
+                child: Icon(Icons.shopping_cart_outlined,
+                color: Colors.black,),
               ),
             ),
             SizedBox(width: 20,)
