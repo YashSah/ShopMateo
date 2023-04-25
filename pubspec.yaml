@@ -55,7 +55,7 @@ dev_dependencies:
   flutter_native_splash: ^2.2.19
 
 flutter_native_splash:
-  color: "#ffffff"
+  background_image: assets/splashScreenBackground.jpeg
   image: assets/ShopMateo.png
 
 flutter_icons:
